@@ -1,0 +1,23 @@
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 24px;
+
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.loading,
+.error {
+  padding: 24px;
+  color: #9da1ad;
+}
+
+.error {
+  color: #ff6262;
+}

@@ -1,0 +1,64 @@
+.task {
+  min-height: 190px;
+
+  padding: 18px;
+
+  background: #1b1d24;
+
+  border: 1px solid #262932;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.task:hover {
+  transform: translateY(-2px);
+  border-color: #3b3e49;
+}
+
+.title {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.description {
+  margin-bottom: 18px;
+
+  color: #9296a3;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  color: #b5b8c2;
+  font-size: 13px;
+}
+
+.delete {
+  margin-top: 18px;
+
+  padding: 8px 12px;
+
+  color: #ff7474;
+  background: #292027;
+
+  border: 0;
+  border-radius: 7px;
+
+  cursor: pointer;
+}
+
+.delete:hover {
+  background: #38242c;
+}
