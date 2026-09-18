@@ -1,0 +1,66 @@
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  color: #9ca0ad;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: white;
+}
+
+.card {
+  padding: 28px;
+
+  background: #181a20;
+  border: 1px solid #292c35;
+  border-radius: 14px;
+}
+
+.title {
+  margin: 0 0 24px;
+
+  font-size: 28px;
+  color: white;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+
+  font-size: 13px;
+  color: #777b88;
+}
+
+.value {
+  margin: 0;
+
+  font-size: 15px;
+  color: #e6e7eb;
+}
+
+.description {
+  line-height: 1.6;
+}
+
+.status,
+.priority {
+  display: inline-block;
+
+  padding: 6px 10px;
+
+  background: #252832;
+  border-radius: 7px;
+
+  font-size: 13px;
+}

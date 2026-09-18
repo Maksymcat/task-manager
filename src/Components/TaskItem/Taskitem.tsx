@@ -2,6 +2,7 @@ import {  useState } from "react"
 import type { Priority, Task, TaskUpdate } from "../../types/task"
 import styles from "../TaskItem/Taskitem.module.css"
 import type { Status, EditableTask } from "../../types/task"
+import { Link } from "react-router-dom";
 
 type TaskItemProps = {
   task: Task;
@@ -85,7 +86,7 @@ const handleEdit = () => {
   }}
 >
   Save
-</button></>) : (<> <h2 className={styles.title}>{task.title}</h2>
+</button></>) : (<> <h2 className={styles.title}><Link to={`/tasks/${task.id}`}>{task.title}</Link></h2>
     <p className={styles.description}>Desc : {task.description}</p><p>Status : {task.status}<button onClick={() => {handleEdit(); setUpdate(true)} }>redact</button></p></>)}
     <p>Priority : {task.priority}</p>
     </div>

@@ -10,6 +10,7 @@ import ProjectsPage from './pages/ProjectsPage/ProjectsPage'
 import Layout from './Components/Layout/Layout'
 import UsersPage from './pages/UsersPage/UsersPage'
 import SettingsPage from './pages/SettingsPage/SettingsPage'
+import TaskDetailsPage from './pages/TaskDetailsPage/TaskDetailsPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +24,7 @@ function App() {
   <Route path="/projects" element={<ProjectsPage />} />
   <Route path="/users" element={<UsersPage />} />
   <Route path="/settings" element={<SettingsPage />} />
+  <Route path="/tasks/:id" element={<TaskDetailsPage />} />
   </Route>
 
 </Routes>

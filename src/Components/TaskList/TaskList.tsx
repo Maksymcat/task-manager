@@ -4,7 +4,7 @@ import { useState } from "react"
 import TaskForm from "../TaskForm/TaskForm"
 import styles from "../TaskList/TaskList.module.css"
 
-type TaskListProps = {
+export type TaskListProps = {
   tasks: Task[];
   onDelete: (id: string) => void;
   onUpdate: (id: string, changes: TaskUpdate) => void

@@ -17,12 +17,28 @@
       "id": "iQUwKPa1VEA"
     },
     {
-      "title": "DO MASSAGE zavtra 12:00",
-      "description": "",
+      "title": "Patriot",
+      "description": "rdefrjava",
       "status": "in-progress",
+      "priority": "low",
+      "createdAt": 1789551298730,
+      "id": "xCUGrgeg_VY"
+    },
+    {
+      "title": "adas",
+      "description": "asdasd",
+      "status": "done",
+      "priority": "low",
+      "createdAt": 1789551309260,
+      "id": "4FXSNPU_gGA"
+    },
+    {
+      "title": "помить посуду трхнуть катю",
+      "description": "",
+      "status": "todo",
       "priority": "high",
-      "createdAt": 1788185385373,
-      "id": "nXeMX3LeVVk"
+      "createdAt": 1789553893390,
+      "id": "YNYRSlz2rf8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

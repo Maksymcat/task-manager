@@ -1,0 +1,25 @@
+.board {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+
+  padding: 16px;
+
+  background: #181a20;
+  border: 1px solid #292c35;
+  border-radius: 12px;
+}
+
+.columnTitle {
+  margin: 0 0 16px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
