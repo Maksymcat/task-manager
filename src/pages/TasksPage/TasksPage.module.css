@@ -1,0 +1,88 @@
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 24px;
+
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.loading,
+.error {
+  padding: 24px;
+  color: #9da1ad;
+}
+
+.error {
+  color: #ff6262;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  margin-bottom: 22px;
+  padding: 14px 16px;
+
+  background: #181a20;
+  border: 1px solid #292c35;
+  border-radius: 12px;
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterLabel {
+  color: #9ca0ad;
+  font-size: 13px;
+}
+
+.filterButton {
+  padding: 7px 12px;
+
+  background: #111319;
+  color: #aeb2be;
+
+  border: 1px solid #30333d;
+  border-radius: 7px;
+
+  cursor: pointer;
+}
+
+.filterButton:hover {
+  background: #252833;
+  color: white;
+}
+
+.active {
+  background: #5b5cf6;
+  color: white;
+  border-color: #5b5cf6;
+}
+
+.search {
+  height: 34px;
+  padding: 0 10px;
+
+  background: #111319;
+  color: white;
+
+  border: 1px solid #30333d;
+  border-radius: 7px;
+
+  outline: none;
+}
+
+.search:focus {
+  border-color: #5b5cf6;
+}

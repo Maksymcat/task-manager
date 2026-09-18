@@ -1,0 +1,45 @@
+{
+  "tasks": [
+    {
+      "title": "123123",
+      "description": "231231",
+      "status": "todo",
+      "priority": "low",
+      "createdAt": 1788114161149,
+      "id": "f-Lemrjj0SQ"
+    },
+    {
+      "title": "00",
+      "description": "000",
+      "status": "todo",
+      "priority": "low",
+      "createdAt": 1788114165907,
+      "id": "iQUwKPa1VEA"
+    },
+    {
+      "title": "Patriot",
+      "description": "rdefrjava",
+      "status": "in-progress",
+      "priority": "low",
+      "createdAt": 1789551298730,
+      "id": "xCUGrgeg_VY"
+    },
+    {
+      "title": "adas",
+      "description": "asdasd",
+      "status": "done",
+      "priority": "low",
+      "createdAt": 1789551309260,
+      "id": "4FXSNPU_gGA"
+    },
+    {
+      "title": "помить посуду трхнуть катю",
+      "description": "",
+      "status": "todo",
+      "priority": "high",
+      "createdAt": 1789553893390,
+      "id": "YNYRSlz2rf8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
