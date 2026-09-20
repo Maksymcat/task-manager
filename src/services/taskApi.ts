@@ -1,15 +1,9 @@
-import type { Task, Status, TaskUpdate } from "../types/task";
-
+import type { Task, TaskUpdate } from "../types/task";
 
 export async function getTasks(): Promise<Task[]> {
   const response = await fetch("http://localhost:3001/tasks");
 
- 
-
-  
   if (!response.ok) {
-
-   
     throw new Error("Failed to fetch tasks");
   }
 
@@ -18,9 +12,7 @@ export async function getTasks(): Promise<Task[]> {
   return data;
 }
 
-export async function createTask(
-  task: Omit<Task, "id">
-): Promise<Task> {
+export async function createTask(task: Omit<Task, "id">): Promise<Task> {
   const response = await fetch("http://localhost:3001/tasks", {
     method: "POST",
 
@@ -41,17 +33,17 @@ export async function createTask(
 }
 
 export async function deleteTask(id: string): Promise<void> {
-  const response = await fetch(`http://localhost:3001/tasks/${id}`,{
-    method: "DELETE"
-  })
-    if (!response.ok) {
+  const response = await fetch(`http://localhost:3001/tasks/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
     throw new Error("Failed to delete task");
   }
 }
 
 export async function updateTaskStatus(
   id: string,
-  changes : TaskUpdate
+  changes: TaskUpdate,
 ): Promise<Task> {
   const response = await fetch(`http://localhost:3001/tasks/${id}`, {
     method: "PATCH",
@@ -62,9 +54,7 @@ export async function updateTaskStatus(
   });
 
   if (!response.ok) {
-    
     throw new Error("Failed to update task");
-   
   }
 
   const data = await response.json();
@@ -72,15 +62,29 @@ export async function updateTaskStatus(
   return data;
 }
 
-export async function getTasksById(id:string ): Promise<Task> {
-
+export async function getTasksById(id: string): Promise<Task> {
   const response = await fetch(`http://localhost:3001/tasks/${id}`);
 
   if (!response.ok) {
-    if(response.status === 404){
-      throw new Error("Page not found")
+    if (response.status === 404) {
+      throw new Error("Page not found");
     }
     throw new Error("Failed to fetch tasks");
+  }
+
+  const data = await response.json();
+
+  return data;
+}
+
+export async function getTasksByProjectId(id: string): Promise<Task[]> {
+  const response = await fetch(`http://localhost:3001/tasks?projectId=${id}`);
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("Page not found");
+    }
+    throw new Error("Failed to fetch tasks by id");
   }
 
   const data = await response.json();

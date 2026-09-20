@@ -1,0 +1,174 @@
+.page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  color: #8f93a0;
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+.back:hover {
+  color: white;
+}
+
+.projectCard {
+  margin-bottom: 26px;
+  padding: 26px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 14px;
+}
+
+.title {
+  margin: 0 0 18px;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.description {
+  margin-bottom: 22px;
+
+  color: #a0a4af;
+  line-height: 1.6;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  min-width: 120px;
+
+  padding: 12px 14px;
+
+  background: #111319;
+
+  border: 1px solid #292c35;
+  border-radius: 9px;
+}
+
+.statLabel {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #6f7380;
+  font-size: 12px;
+}
+
+.statValue {
+  color: #f4f4f6;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  margin-bottom: 20px;
+}
+
+.input,
+.select {
+  height: 38px;
+
+  padding: 0 10px;
+
+  color: #f0f1f4;
+  background: #111319;
+
+  border: 1px solid #30333d;
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.input:focus,
+.select:focus {
+  border-color: #5b5cf6;
+}
+
+.tasksTitle {
+  margin: 0 0 14px;
+
+  font-size: 20px;
+  color: white;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.task {
+  padding: 12px 14px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 9px;
+}
+
+.task a {
+  color: #e5e6eb;
+  text-decoration: none;
+}
+
+.task a:hover {
+  color: #8585ff;
+}
+
+.empty {
+  padding: 20px;
+
+  text-align: center;
+
+  color: #737784;
+  background: #181a20;
+
+  border: 1px dashed #343741;
+  border-radius: 10px;
+}
+
+.loading {
+  color: #969aa5;
+}
+
+.error {
+  padding: 14px;
+
+  color: #ff8585;
+  background: #2b1d22;
+
+  border: 1px solid #4a2932;
+  border-radius: 9px;
+}

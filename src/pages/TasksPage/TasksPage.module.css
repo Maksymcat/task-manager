@@ -86,3 +86,21 @@
 .search:focus {
   border-color: #5b5cf6;
 }
+
+.sortSelect {
+  height: 34px;
+  padding: 0 10px;
+
+  background: #111319;
+  color: #d5d7dd;
+
+  border: 1px solid #30333d;
+  border-radius: 7px;
+
+  outline: none;
+  cursor: pointer;
+}
+
+.sortSelect:focus {
+  border-color: #5b5cf6;
+}
