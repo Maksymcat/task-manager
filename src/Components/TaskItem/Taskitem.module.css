@@ -1,64 +1,173 @@
 .task {
-  min-height: 190px;
+  display: flex;
+  flex-direction: column;
 
-  padding: 18px;
+  padding: 16px;
 
   background: #1b1d24;
+  border: 1px solid #292c35;
+  border-radius: 10px;
 
-  border: 1px solid #262932;
-  border-radius: 12px;
-
-  transition:
-    transform 0.2s,
-    border-color 0.2s;
-}
-
-.task:hover {
-  transform: translateY(-2px);
-  border-color: #3b3e49;
+  min-width: 0;
 }
 
 .title {
   margin: 0 0 10px;
 
-  color: #ffffff;
-
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
 }
 
+.title a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.title a:hover {
+  color: #8585ff;
+}
+
 .description {
-  margin-bottom: 18px;
+  margin: 0 0 16px;
 
-  color: #9296a3;
-
-  font-size: 14px;
+  color: #969aa5;
+  font-size: 13px;
   line-height: 1.5;
+
+  word-break: break-word;
 }
 
 .meta {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
 
-  color: #b5b8c2;
-  font-size: 13px;
+  margin-bottom: 16px;
 }
 
-.delete {
-  margin-top: 18px;
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
 
+.metaLabel {
+  color: #747985;
+  font-size: 12px;
+}
+
+.status,
+.priority {
+  padding: 5px 8px;
+
+  background: #272a33;
+  color: #d7d9df;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+
+  margin-top: auto;
+}
+
+.editButton,
+.delete,
+.saveButton,
+.cancelButton {
   padding: 8px 12px;
 
-  color: #ff7474;
-  background: #292027;
-
-  border: 0;
+  border: none;
   border-radius: 7px;
 
   cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.editButton,
+.cancelButton {
+  background: #292c35;
+  color: #d5d7dd;
+}
+
+.editButton:hover,
+.cancelButton:hover {
+  background: #373b46;
+}
+
+.delete {
+  background: #2a1f24;
+  color: #ff7b86;
 }
 
 .delete:hover {
-  background: #38242c;
+  background: #3a252c;
+}
+
+.saveButton {
+  flex: 1;
+
+  background: #5b5cf6;
+  color: white;
+}
+
+.saveButton:hover {
+  background: #6b6cff;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  color: #7f8490;
+  font-size: 12px;
+}
+
+.editInput,
+.editTextarea,
+.select {
+  width: 100%;
+
+  padding: 9px 11px;
+
+  background: #111319;
+  color: #f1f2f5;
+
+  border: 1px solid #30333d;
+  border-radius: 7px;
+
+  outline: none;
+}
+
+.editInput {
+  height: 38px;
+}
+
+.editTextarea {
+  min-height: 72px;
+
+  resize: vertical;
+}
+
+.editInput:focus,
+.editTextarea:focus,
+.select:focus {
+  border-color: #5b5cf6;
 }

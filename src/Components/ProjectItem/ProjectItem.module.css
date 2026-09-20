@@ -1,0 +1,213 @@
+.card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 2px;
+
+  padding: 20px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #3a3d48;
+}
+
+.name {
+  margin: 0 0 10px;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.name a {
+  color: #f5f5f7;
+  text-decoration: none;
+}
+
+.name a:hover {
+  color: #8585ff;
+}
+
+.description {
+  flex: 1;
+
+  margin: 0 0 16px;
+
+  color: #979ba7;
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.meta {
+  margin-bottom: 16px;
+
+  color: #696d78;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.editButton,
+.deleteButton,
+.saveButton {
+  padding: 8px 12px;
+
+  border: 0;
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.editButton {
+  background: #292c35;
+  color: #d5d7dd;
+}
+
+.editButton:hover {
+  background: #353943;
+}
+
+.deleteButton {
+  background: #2a1f24;
+  color: #ff7d87;
+}
+
+.deleteButton:hover {
+  background: #3a252c;
+}
+
+.saveButton {
+  background: #5b5cf6;
+  color: white;
+}
+
+.saveButton:hover {
+  background: #6b6cff;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input {
+  width: 100%;
+  min-height: 40px;
+
+  padding: 10px 12px;
+
+  background: #111319;
+  color: #f0f1f4;
+
+  border: 1px solid #30333d;
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.input:focus {
+  border-color: #5b5cf6;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 12px;
+  color: #8f93a0;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+
+  background: #111319;
+  color: #f1f2f5;
+
+  border: 1px solid #30333d;
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.input {
+  height: 40px;
+}
+
+.textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #5b5cf6;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.saveButton {
+  flex: 1;
+
+  padding: 9px 12px;
+
+  background: #5b5cf6;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background: #6b6cff;
+}
+
+.cancelButton {
+  padding: 9px 12px;
+
+  background: #292c35;
+  color: #c7cad2;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background: #343843;
+}
