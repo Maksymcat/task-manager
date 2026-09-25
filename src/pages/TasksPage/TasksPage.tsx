@@ -9,6 +9,8 @@ import type { Status } from "../../types/task";
 import KanbanBoard from "../../Components/KanbanBoard/KanbanBoard";
 import { getProjects } from "../../services/projectApi";
 import { type Project } from "../../types/projects";
+import { type User } from "../../types/User";
+import { getUsers } from "../../services/usersApi";
 
 type SortValue = "" | "New" | "Old" | "Alphabet";
 
@@ -21,6 +23,7 @@ function TasksPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [users, setUsers] = useState<User[]>([])
 
   const handleCreateTask = async (newTask: Omit<Task, "id">) => {
     try {
@@ -33,31 +36,32 @@ function TasksPage() {
   };
 
   useEffect(() => {
-    async function loadTasks() {
-      try {
-        const data = await getTasks();
-        setTasks(data);
-      } catch (error) {
-        setError("Не вдалося завантажити данні");
-      } finally {
-        setLoading(false);
+      async function loadPage() {
+        
+        setError(null)
+        setLoading(true)
+        try {
+  
+          const [tasks, projects, users] = await Promise.all([
+            getTasks(),
+            getProjects(),
+            getUsers()
+          ])
+  
+          setTasks(tasks)
+          setProjects(projects)
+          setUsers(users)
+        } catch {
+          setError("error")
+        } finally {
+          setLoading(false)
+  
+        }
+  
       }
-    }
-    loadTasks();
-  }, []);
-  useEffect(() => {
-    async function loadProjects() {
-      try {
-        const data = await getProjects();
-        setProjects(data);
-      } catch (error) {
-        console.log("Error");
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadProjects();
-  }, []);
+      loadPage()
+  
+    }, [])
 
   const handleDelete = async (id: string) => {
     try {
@@ -206,8 +210,10 @@ function TasksPage() {
       </div>
       <div className={styles.page}>
         <h1 className={styles.title}>Tasks</h1>
-        <TaskForm projects={projects} onCreate={handleCreateTask} />
+        <TaskForm users={users} projects={projects} onCreate={handleCreateTask} />
         <KanbanBoard
+          projects={projects}
+          users={users}
           tasks={sortedTasks}
           onUpdate={handleUpdate}
           onDelete={handleDelete}

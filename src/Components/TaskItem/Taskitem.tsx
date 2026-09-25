@@ -10,25 +10,33 @@ import type {
 } from "../../types/task";
 
 import styles from "./Taskitem.module.css";
+import type { Project } from "../../types/projects";
+import type { User } from "../../types/User";
 
 type TaskItemProps = {
   task: Task;
+  users: User[];
+  projects: Project[];
   onDelete: (id: string) => void;
   onUpdate: (id: string, changes: TaskUpdate) => void;
 };
 
 function TaskItem({
   task,
+  users,
+  projects,
   onDelete,
   onUpdate,
 }: TaskItemProps) {
-  const [update, setUpdate] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   const [draft, setDraft] = useState<EditableTask>({
     title: task.title,
     description: task.description,
     status: task.status,
     priority: task.priority,
+    assigneeId: task.assigneeId,
+    projectId: task.projectId,
   });
 
   const handleEdit = () => {
@@ -37,14 +45,20 @@ function TaskItem({
       description: task.description,
       status: task.status,
       priority: task.priority,
+      assigneeId: task.assigneeId,
+      projectId: task.projectId,
     });
 
-    setUpdate(true);
+    setIsEditing(true);
   };
+
+  const project = projects.find((project) => project.id === task.projectId);
+
+  const user = users.find((user) => user.id === task.assigneeId);
 
   return (
     <li className={styles.task}>
-      {update ? (
+      {isEditing ? (
         <div className={styles.editForm}>
           <div className={styles.field}>
             <span className={styles.label}>Title</span>
@@ -60,7 +74,6 @@ function TaskItem({
               }
             />
           </div>
-
           <div className={styles.field}>
             <span className={styles.label}>Description</span>
 
@@ -75,7 +88,6 @@ function TaskItem({
               }
             />
           </div>
-
           <div className={styles.field}>
             <span className={styles.label}>Status</span>
 
@@ -90,13 +102,10 @@ function TaskItem({
               }
             >
               <option value="todo">Todo</option>
-              <option value="in-progress">
-                In progress
-              </option>
+              <option value="in-progress">In progress</option>
               <option value="done">Done</option>
             </select>
           </div>
-
           <div className={styles.field}>
             <span className={styles.label}>Priority</span>
 
@@ -115,13 +124,48 @@ function TaskItem({
               <option value="high">High</option>
             </select>
           </div>
-
+          <div className={styles.field}>
+            <span>project</span>
+            <select
+              className={styles.select}
+              value={draft.projectId}
+              onChange={(e) =>
+                setDraft((prev) => ({
+                  ...prev,
+                  projectId: e.target.value,
+                }))
+              }
+            >
+              {projects.map((project) => (
+                <option value={project.id}>{project.name}</option>
+              ))}
+            </select>
+          </div>{" "}
+          <div className={styles.field}>
+            <span>User</span>
+            <select
+              className={styles.select}
+              value={draft.assigneeId}
+              onChange={(e) =>
+                setDraft((prev) => ({
+                  ...prev,
+                  assigneeId: e.target.value,
+                }))
+              }
+            >
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className={styles.actions}>
             <button
               className={styles.saveButton}
               onClick={() => {
                 onUpdate(task.id, draft);
-                setUpdate(false);
+                setIsEditing(false);
               }}
             >
               Save
@@ -130,7 +174,7 @@ function TaskItem({
             <button
               className={styles.cancelButton}
               onClick={() => {
-                setUpdate(false);
+                setIsEditing(false);
               }}
             >
               Cancel
@@ -140,49 +184,47 @@ function TaskItem({
       ) : (
         <>
           <h2 className={styles.title}>
-            <Link to={`/tasks/${task.id}`}>
-              {task.title}
-            </Link>
+            <Link to={`/tasks/${task.id}`}>{task.title}</Link>
           </h2>
 
-          <p className={styles.description}>
-            {task.description}
-          </p>
+          <p className={styles.description}>{task.description}</p>
 
           <div className={styles.meta}>
             <div className={styles.metaRow}>
-              <span className={styles.metaLabel}>
-                Status
-              </span>
+              <span className={styles.metaLabel}>Status</span>
 
-              <span className={styles.status}>
-                {task.status}
+              <span className={styles.status}>{task.status}</span>
+            </div>
+
+            <div className={styles.metaRow}>
+              <span className={styles.metaLabel}>Priority</span>
+
+              <span className={styles.priority}>{task.priority}</span>
+            </div>
+
+            <div className={styles.metaRow}>
+              <span className={styles.metaLabel}>User</span>
+
+              <span className={styles.priority}>
+                {user?.name ?? "Unassigned"}
               </span>
             </div>
 
             <div className={styles.metaRow}>
-              <span className={styles.metaLabel}>
-                Priority
-              </span>
+              <span className={styles.metaLabel}>Project</span>
 
               <span className={styles.priority}>
-                {task.priority}
+                {project?.name ?? "WithoutProject"}
               </span>
             </div>
           </div>
 
           <div className={styles.actions}>
-            <button
-              className={styles.editButton}
-              onClick={handleEdit}
-            >
+            <button className={styles.editButton} onClick={handleEdit}>
               Edit
             </button>
 
-            <button
-              className={styles.delete}
-              onClick={() => onDelete(task.id)}
-            >
+            <button className={styles.delete} onClick={() => onDelete(task.id)}>
               Delete
             </button>
           </div>

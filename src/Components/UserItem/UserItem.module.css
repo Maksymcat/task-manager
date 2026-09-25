@@ -1,0 +1,92 @@
+.card {
+  display: flex;
+  gap: 14px;
+
+  padding: 18px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #3a3d48;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #5b5cf6;
+  color: white;
+
+  border-radius: 50%;
+
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.content {
+  min-width: 0;
+  flex: 1;
+}
+
+.name {
+  margin: 0 0 6px;
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.name a {
+  color: #f5f5f7;
+  text-decoration: none;
+}
+
+.name a:hover {
+  color: #8585ff;
+}
+
+.email {
+  margin: 0 0 14px;
+
+  color: #8e929e;
+  font-size: 13px;
+
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.role {
+  padding: 5px 8px;
+
+  background: #272a33;
+  color: #d6d8de;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.id {
+  color: #666a76;
+  font-size: 11px;
+}

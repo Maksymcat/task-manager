@@ -1,13 +1,54 @@
 {
   "tasks": [
     {
-      "title": "Модернізація розділу \"Project\"",
-      "description": "кількість tasks у проекті скільки done progress у % пошук проектів sort можливо статус проекту",
+      "title": "asdasd",
+      "description": "asdasd",
+      "status": "in-progress",
+      "priority": "medium",
+      "createdAt": 1790158823921,
+      "projectId": "fPqNH5ZgT3o",
+      "assigneeId": "grind",
+      "id": "g4uQ09ZhduE"
+    },
+    {
+      "title": "asdasd",
+      "description": "asdasdasd",
       "status": "todo",
       "priority": "low",
-      "createdAt": 1789841268064,
+      "createdAt": 1790159674329,
       "projectId": "fPqNH5ZgT3o",
-      "id": "okua3TZRz8Q"
+      "assigneeId": "asdasd",
+      "id": "twdYm-HGTMo"
+    },
+    {
+      "title": "dasads",
+      "description": "asdasdasd",
+      "status": "done",
+      "priority": "low",
+      "createdAt": 1790243871542,
+      "projectId": "fPqNH5ZgT3o",
+      "assigneeId": "asdasd",
+      "id": "wGzj108u32U"
+    },
+    {
+      "title": "asdaasd",
+      "description": "12312323",
+      "status": "done",
+      "priority": "high",
+      "createdAt": 1790327862074,
+      "projectId": "",
+      "assigneeId": "",
+      "id": "HYJf5gMJzPA"
+    },
+    {
+      "title": "123123",
+      "description": "123132132",
+      "status": "todo",
+      "priority": "medium",
+      "createdAt": 1790327869874,
+      "projectId": "fPqNH5ZgT3o",
+      "assigneeId": "grind",
+      "id": "98hocrKKCUs"
     }
   ],
   "projects": [
@@ -16,6 +57,20 @@
       "description": "Вивчання реакт, джс редакс тощо, робота над пет-проєктами",
       "createdAt": 1789841139166,
       "id": "fPqNH5ZgT3o"
+    }
+  ],
+  "users": [
+    {
+      "id": "asdasd",
+      "name": "John Smith",
+      "email": "john@mail.com",
+      "role": "developer"
+    },
+    {
+      "id": "grind",
+      "name": "John Smith",
+      "email": "john@mail.com",
+      "role": "developer"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
