@@ -3,7 +3,7 @@ import styles from "../Sidebar/Sidebar.module.css"
 
 function Sidebar() {
     return (
-        <>
+
             <aside className={styles.sidebar}>
                 <NavLink to="/">Dashboard</NavLink>
                 <NavLink to="/projects">Projects</NavLink>
@@ -12,7 +12,7 @@ function Sidebar() {
                 <NavLink to="/users">Users</NavLink>
             </aside>
 
-        </>
+   
     )
 }
 

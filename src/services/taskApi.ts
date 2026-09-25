@@ -1,4 +1,5 @@
 import type { Task, TaskUpdate } from "../types/task";
+import type { User } from "../types/User";
 
 export async function getTasks(): Promise<Task[]> {
   const response = await fetch("http://localhost:3001/tasks");
@@ -85,6 +86,21 @@ export async function getTasksByProjectId(id: string): Promise<Task[]> {
       throw new Error("Page not found");
     }
     throw new Error("Failed to fetch tasks by id");
+  }
+
+  const data = await response.json();
+
+  return data;
+}
+
+export async function getTasksByAssigneeId(id: string): Promise<Task[]> {
+  const response = await fetch(`http://localhost:3001/tasks?assigneeId=${id}`);
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error("Page not found");
+    }
+    throw new Error("Failed to fetch users by id");
   }
 
   const data = await response.json();

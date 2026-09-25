@@ -1,0 +1,188 @@
+.page {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  color: #8e929e;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: white;
+}
+
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 24px;
+  margin-bottom: 18px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 14px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #5b5cf6;
+  color: white;
+
+  border-radius: 50%;
+
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.name {
+  margin: 0 0 5px;
+
+  color: white;
+  font-size: 26px;
+}
+
+.email {
+  margin: 0 0 10px;
+
+  color: #9296a2;
+}
+
+.role {
+  display: inline-block;
+
+  padding: 5px 9px;
+
+  background: #272a33;
+  color: #d6d8de;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+
+  margin-bottom: 26px;
+}
+
+.stat {
+  flex: 1;
+
+  padding: 14px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 10px;
+}
+
+.statLabel {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #707481;
+  font-size: 12px;
+}
+
+.statValue {
+  color: white;
+
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tasksTitle {
+  margin: 0 0 14px;
+
+  color: white;
+  font-size: 20px;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 13px 15px;
+
+  background: #181a20;
+
+  border: 1px solid #292c35;
+  border-radius: 9px;
+}
+
+.task a {
+  color: #e5e6eb;
+  text-decoration: none;
+}
+
+.task a:hover {
+  color: #8585ff;
+}
+
+.taskStatus {
+  padding: 5px 8px;
+
+  background: #272a33;
+  color: #bfc2ca;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+}
+
+.empty {
+  padding: 24px;
+
+  text-align: center;
+
+  color: #747985;
+  background: #181a20;
+
+  border: 1px dashed #343741;
+  border-radius: 10px;
+}
+
+.loading {
+  color: #969aa5;
+}
+
+.error {
+  padding: 14px;
+
+  color: #ff8585;
+  background: #2b1d22;
+
+  border: 1px solid #4a2932;
+  border-radius: 9px;
+}

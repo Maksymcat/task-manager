@@ -1,0 +1,24 @@
+.list {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(260px, 1fr));
+
+  gap: 16px;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.empty {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #747985;
+  background: #181a20;
+
+  border: 1px dashed #343741;
+  border-radius: 12px;
+}

@@ -1,6 +1,7 @@
 export type Status = "todo" | "in-progress" | "done";
 export type Priority = "high" | "medium" | "low";
 
+
 export type Task = {
   id: string;
   title: string;
@@ -9,11 +10,13 @@ export type Task = {
   priority: Priority;
   createdAt: number;
   projectId: string;
+  assigneeId: string;
 };
 
 export type EditableTask = Pick<
   Task,
-  "title" | "description" | "status" | "priority"
+
+  "title" | "description" | "status" | "priority" | "assigneeId" | "projectId"
 >;
 
 export type TaskUpdate = Partial<EditableTask>;
