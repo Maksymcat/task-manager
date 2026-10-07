@@ -9,7 +9,7 @@ import {
 import ProjectList from "../../Components/ProjectList/ProjectList";
 import ProjectForm from "../../Components/ProjectForm/ProjectForm";
 import styles from "./ProjectsPage.module.css";
-
+import { getTasksByProjectId } from "../../services/taskApi";
 function ProjectsPage() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -20,6 +20,7 @@ function ProjectsPage() {
             try {
                 const data = await getProjects();
                 setProjects(data);
+              
             } catch (error) {
                 setError("Load projects is failed");
             } finally {
@@ -29,29 +30,44 @@ function ProjectsPage() {
         loadProjects();
     }, []);
 
-    const handleCreateProject = async (newProject: Omit<Project, "id">) => {
+    const handleCreateProject = async (newProject: Omit<Project, "id">): Promise<boolean> => {
         try {
             const createdProject = await createProject(newProject);
 
             setProjects((prevProjects) => [...prevProjects, createdProject]);
+            return true
         } catch (error) {
             setError("Cant create project");
+            return false
         }
     };
 
-    const handleDeleteProject = async (id: string) => {
-        try {
-            await deleteProject(id);
+  const handleDeleteProject = async (id: string) => {
+  try {
+    const tasks = await getTasksByProjectId(id);
 
-            setProjects((prevProjects) =>
-                prevProjects.filter((project) => project.id !== id),
-            );
-        } catch (error) {
-            setError("Помилка видалення");
-        }
-    };
+    if (tasks.length > 0) {
+      setError(
+        "You can't delete a project that contains tasks"
+      );
 
-    const handleUpdate = async (id: string, changes: ProjectUpdate) => {
+      return;
+    }
+
+    await deleteProject(id);
+
+    setProjects((prevProjects) =>
+      prevProjects.filter(
+        (project) => project.id !== id
+      )
+    );
+  } catch (error) {
+    setError("Failed to delete project");
+  }
+};
+
+    const handleUpdate = async (id: string, changes: ProjectUpdate)  => {
+
         try {
             const updatedProject = await updateProject(id, changes);
 
@@ -67,6 +83,9 @@ function ProjectsPage() {
 
     if (loading) {
         return <div>loading...</div>;
+    }
+    if(error){
+        return <div>{error}...</div>
     }
 
     return (

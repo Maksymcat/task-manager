@@ -6,28 +6,36 @@
 .back {
   display: inline-block;
   margin-bottom: 20px;
-
-  color: #9ca0ad;
+background: var(--surface);
+  color: var(--text);
   text-decoration: none;
 }
 
 .back:hover {
-  color: white;
+  color:var(--text-secondary);
+  
 }
 
 .card {
   padding: 28px;
 
-  background: #181a20;
-  border: 1px solid #292c35;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 14px;
+
 }
 
 .title {
   margin: 0 0 24px;
 
   font-size: 28px;
-  color: white;
+  color: var(--text);
+   display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .field {
@@ -39,18 +47,24 @@
   margin-bottom: 6px;
 
   font-size: 13px;
-  color: #777b88;
+  color: var(--text-secondary);
 }
 
 .value {
   margin: 0;
 
   font-size: 15px;
-  color: #e6e7eb;
+  color: var(--text);
 }
 
 .description {
   line-height: 1.6;
+   display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .status,
@@ -59,7 +73,7 @@
 
   padding: 6px 10px;
 
-  background: #252832;
+  background: var(--surface);
   border-radius: 7px;
 
   font-size: 13px;

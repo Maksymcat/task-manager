@@ -7,8 +7,8 @@
 
   padding: 14px;
 
-  background: #191b22;
-  border: 1px solid #252832;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 12px;
 }
 
@@ -18,13 +18,14 @@
 
   padding: 0 12px;
 
-  color: #eeeeF2;
-  background: #101116;
+  color: var(--text);
+  background: var(--input-bg);
 
-  border: 1px solid #30333d;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
 
   outline: none;
+  min-width: 0;
 }
 
 .input {
@@ -32,12 +33,12 @@
 }
 
 .input::placeholder {
-  color: #626672;
+  color: var(--text-secondary);
 }
 
 .input:focus,
 .select:focus {
-  border-color: #5958f6;
+  border-color: var(--accent);
 }
 
 .select {
@@ -51,13 +52,107 @@
   border: 0;
   border-radius: 8px;
 
-  background: #5958f6;
-  color: white;
+  background: var(--surface);
+  color: var(--text);
 
   cursor: pointer;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .submit:hover {
-  background: #6968ff;
+  background: var(--surface-hover);
+}
+
+@media (max-width: 900px) {
+  .form {
+    flex-wrap: wrap;
+  }
+
+  .input,
+  .select {
+    flex: 1 1 180px;
+  }
+}
+.form {
+  display: grid;
+
+  grid-template-columns:
+    minmax(120px, 1fr)
+    minmax(140px, 1.2fr)
+    100px
+    120px
+    minmax(160px, 1.3fr)
+    minmax(130px, 1fr)
+    auto;
+
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 12px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.input,
+.select {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+
+  padding: 0 10px;
+
+  background: var(--input-bg);
+  color: var(--text);
+
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--accent);
+}
+
+.submit {
+  height: 42px;
+  padding: 0 16px;
+
+  white-space: nowrap;
+
+  background: var(--accent);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1100px) {
+  .form {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
 }

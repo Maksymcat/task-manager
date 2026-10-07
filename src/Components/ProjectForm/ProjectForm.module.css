@@ -6,9 +6,9 @@
   margin-bottom: 26px;
   padding: 14px;
 
-  background: #181a20;
+   background: var(--surface);
 
-  border: 1px solid #292c35;
+  border: 1px solid var(--border);
   border-radius: 12px;
 }
 
@@ -19,32 +19,32 @@
 
   padding: 0 12px;
 
-  color: #f0f1f4;
-  background: #111319;
+  color: var(--text);
+  background: var(--input-bg);
 
-  border: 1px solid #30333d;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
 
   outline: none;
 }
 
 .input::placeholder {
-  color: #626672;
+  color: var(--text-secondary);
 }
 
 .input:focus {
-  border-color: #5b5cf6;
+  border-color: var(--text-secondary);
 }
 
 .button {
   height: 42px;
   padding: 0 18px;
 
-  border: 0;
+  border: 1px solid var(--border);
   border-radius: 8px;
 
-  background: #5b5cf6;
-  color: white;
+  background: var(--surface);
+  color: var(--text);
 
   font-weight: 500;
   cursor: pointer;
@@ -53,5 +53,5 @@
 }
 
 .button:hover {
-  background: #6b6cff;
+  background: var(--text-secondary);
 }

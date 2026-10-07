@@ -15,8 +15,8 @@ body {
   font-family:
     Inter, Arial, sans-serif;
 
-  background: #101116;
-  color: #f5f5f7;
+    background: var(--bg);
+   color: var(--text);
 }
 
 button,
@@ -24,4 +24,36 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+:root[data-theme="dark"] {
+  --bg: #111318;
+  --surface: #181a20;
+  --surface-hover: #20232b;
+
+    --input-bg: #202229;
+  --input-border: #343741;
+
+  --text: #f5f5f7;
+  --text-secondary: #9296a2;
+
+  --border: #292c35;
+
+   --accent: #5b5ff5;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f6fa;              
+  --surface: #ffffff;         
+  --surface-hover: #5958f6;   
+
+  --input-bg: #f6f7fb;       
+  --input-border: #e2e5ed;
+
+  --text: #202532;           
+  --text-secondary: #8a92a3; 
+
+  --border: #e5e8ef;
+
+  --accent: #5b5ff5;
 }

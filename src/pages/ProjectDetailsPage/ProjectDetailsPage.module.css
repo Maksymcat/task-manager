@@ -9,23 +9,23 @@
 
   margin-bottom: 20px;
 
-  color: #8f93a0;
+  color: var(--text);
   text-decoration: none;
 
   transition: 0.2s;
 }
 
 .back:hover {
-  color: white;
+  color: var(--text-secondary);
 }
 
 .projectCard {
   margin-bottom: 26px;
   padding: 26px;
 
-  background: #181a20;
+  background: var(--surface);
 
-  border: 1px solid #292c35;
+  border: 1px solid var(--border);
   border-radius: 14px;
 }
 
@@ -35,14 +35,26 @@
   font-size: 30px;
   font-weight: 700;
 
-  color: #ffffff;
+  color: var(--text);
+   display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .description {
   margin-bottom: 22px;
 
-  color: #a0a4af;
+  color: var(--text-secondary);
   line-height: 1.6;
+   display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .stats {
@@ -56,9 +68,9 @@
 
   padding: 12px 14px;
 
-  background: #111319;
+  background: var(--surface-hover);
 
-  border: 1px solid #292c35;
+  border: 1px solid var(--border);
   border-radius: 9px;
 }
 
@@ -67,12 +79,13 @@
 
   margin-bottom: 5px;
 
-  color: #6f7380;
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
 .statValue {
-  color: #f4f4f6;
+  color: var(--text);
+
   font-size: 16px;
   font-weight: 600;
 }
@@ -92,13 +105,17 @@
 
   padding: 0 10px;
 
-  color: #f0f1f4;
-  background: #111319;
+  color: var(--text);
+  background: var(--input-bg);
 
-  border: 1px solid #30333d;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
 
   outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
 }
 
 .input {
@@ -108,14 +125,15 @@
 
 .input:focus,
 .select:focus {
-  border-color: #5b5cf6;
+  border-color: var(--accent);
 }
 
 .tasksTitle {
   margin: 0 0 14px;
 
   font-size: 20px;
-  color: white;
+  color: var(--text);
+  
 }
 
 .taskList {
@@ -132,19 +150,26 @@
 .task {
   padding: 12px 14px;
 
-  background: #181a20;
+  background: var(--surface);
 
-  border: 1px solid #292c35;
+  border: 1px solid var(--border);
   border-radius: 9px;
 }
 
 .task a {
-  color: #e5e6eb;
+  color: var(--text);
   text-decoration: none;
+
+     display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .task a:hover {
-  color: #8585ff;
+  color: var(--accent);
 }
 
 .empty {
@@ -152,15 +177,15 @@
 
   text-align: center;
 
-  color: #737784;
-  background: #181a20;
+  color: var(--text-secondary);
+  background: var(--surface);
 
-  border: 1px dashed #343741;
+  border: 1px dashed var(--border);
   border-radius: 10px;
 }
 
 .loading {
-  color: #969aa5;
+  color: var(--text-secondary);
 }
 
 .error {

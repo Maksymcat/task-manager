@@ -9,7 +9,7 @@ export type TaskListProps = {
     users: User[];
     projects: Project[];
     onDelete: (id: string) => void;
-    onUpdate: (id: string, changes: TaskUpdate) => void
+    onUpdate: (id: string, changes: TaskUpdate) => Promise<boolean>
 };
 
 function TaskList({ tasks, users, projects, onDelete, onUpdate }: TaskListProps) {
