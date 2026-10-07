@@ -16,9 +16,9 @@
 
   text-align: center;
 
-  color: #747985;
-  background: #181a20;
+  color: var(--text);
+  background: var(--surface);
 
-  border: 1px dashed #343741;
+  border: 1px dashed var(--border);
   border-radius: 12px;
 }

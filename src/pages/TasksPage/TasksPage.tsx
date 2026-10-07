@@ -22,24 +22,35 @@ function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+ const [loadError, setLoadError] = useState<string | null>(null);
+const [mutationError, setMutationError] = useState<string | null>(null);
   const [users, setUsers] = useState<User[]>([])
+  const [isCreating, setIsCreating] = useState(false);
 
-  const handleCreateTask = async (newTask: Omit<Task, "id">) => {
+  const handleCreateTask = async (newTask: Omit<Task, "id">): Promise<boolean> => {
+    setIsCreating(true)
+    setMutationError(null)
     try {
+ 
       const createdTask = await createTask(newTask);
 
       setTasks((prevTasks) => [...prevTasks, createdTask]);
+      return true
     } catch {
-      setError("Не вдалося створити задачу");
+      setMutationError("Не вдалося створити задачу");
+
+      return false
+    }finally{
+      setIsCreating(false)
     }
   };
 
   useEffect(() => {
+   
       async function loadPage() {
-        
-        setError(null)
-        setLoading(true)
+          setLoading(true)
+        setLoadError(null)
+       
         try {
   
           const [tasks, projects, users] = await Promise.all([
@@ -52,9 +63,9 @@ function TasksPage() {
           setProjects(projects)
           setUsers(users)
         } catch {
-          setError("error")
+          setLoadError("error")
         } finally {
-          setLoading(false)
+       setLoading(false)
   
         }
   
@@ -64,29 +75,29 @@ function TasksPage() {
     }, [])
 
   const handleDelete = async (id: string) => {
+      setMutationError(null);
     try {
       await deleteTask(id);
 
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
     } catch {
-      setError("Не вдалося видалити задачу");
+      setMutationError("Не вдалося видалити задачу");
     }
   };
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-  if (error) {
-    return <p>{error}</p>;
-  }
-  const handleUpdate = async (id: string, changes: TaskUpdate) => {
+ 
+
+  const handleUpdate = async (id: string, changes: TaskUpdate): Promise<boolean> => {
+      setMutationError(null);
     try {
       const updatedTask = await updateTaskStatus(id, changes);
 
       setTasks((prevTasks) =>
         prevTasks.map((task) => (task.id === id ? updatedTask : task)),
       );
+      return true
     } catch {
-      setError("Не вдалося оновити задачу");
+      setMutationError("Не вдалося оновити задачу");
+      return false
     }
   };
   let filteredTasks = tasks.filter(
@@ -113,10 +124,16 @@ function TasksPage() {
     }
     return 0;
   });
+  if(loading){
+    return <div>Loading...</div>
+  }
+  if(loadError){
+    return <div>{loadError}...</div>
+  }
   return (
     <>
       <div className={styles.filters}>
-        <div>
+        <label>
           sort By
           <select
             className={styles.sortSelect}
@@ -128,17 +145,17 @@ function TasksPage() {
             <option value="Old">Oldest</option>
             <option value="Alphabet">A-Z</option>
           </select>
-        </div>
+        </label>
         <div>
           {" "}
           <span className={styles.filterLabel}>Status</span>
-          <button
+          <button aria-pressed={statusFilter === ""}
             className={styles.filterButton}
             onClick={() => setStatusFilter("")}
           >
             all
           </button>
-          <button
+          <button aria-pressed={statusFilter === "todo"}
             className={
               statusFilter === "todo"
                 ? `${styles.filterButton} ${styles.active}`
@@ -148,7 +165,7 @@ function TasksPage() {
           >
             todo
           </button>
-          <button
+          <button  aria-pressed={statusFilter === "in-progress"}
             className={
               statusFilter === "in-progress"
                 ? `${styles.filterButton} ${styles.active}`
@@ -158,7 +175,7 @@ function TasksPage() {
           >
             in-progress
           </button>
-          <button
+          <button aria-pressed={statusFilter === "done"}
             className={
               statusFilter === "done"
                 ? `${styles.filterButton} ${styles.active}`
@@ -169,35 +186,35 @@ function TasksPage() {
             done{" "}
           </button>
         </div>
-        <div className={styles.filterGroup}>
+        <div  className={styles.filterGroup}>
           <span className={styles.filterLabel}>Priority</span>
 
-          <button
+          <button aria-pressed={priorityFilter === ""}
             className={styles.filterButton}
             onClick={() => setPriorityFilter("")}
           >
             all
           </button>
-          <button
+          <button aria-pressed={priorityFilter === "high"}
             className={styles.filterButton}
             onClick={() => setPriorityFilter("high")}
           >
             high
           </button>
-          <button
+          <button aria-pressed={priorityFilter === "medium"}
             className={styles.filterButton}
             onClick={() => setPriorityFilter("medium")}
           >
             medium
           </button>
-          <button
+          <button aria-pressed={priorityFilter === "low"}
             className={styles.filterButton}
             onClick={() => setPriorityFilter("low")}
           >
             low{" "}
           </button>
         </div>
-        <div>
+        <label>
           Find task{" "}
           <input
             className={styles.search}
@@ -206,11 +223,16 @@ function TasksPage() {
             placeholder="Find"
             onChange={(e) => setSearchValue(e.target.value)}
           ></input>
-        </div>
+        </label>
       </div>
       <div className={styles.page}>
         <h1 className={styles.title}>Tasks</h1>
-        <TaskForm users={users} projects={projects} onCreate={handleCreateTask} />
+   {mutationError && (
+    <div role="alert" className={styles.error}>
+      {mutationError}
+    </div>
+  )}
+        <TaskForm isCreating={isCreating} users={users} projects={projects} onCreate={handleCreateTask} />
         <KanbanBoard
           projects={projects}
           users={users}

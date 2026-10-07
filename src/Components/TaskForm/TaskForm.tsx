@@ -8,21 +8,28 @@ import type { Project } from "../../types/projects";
 import type { User } from "../../types/User";
 
 type TaskFormProps = {
-  onCreate: (task: Omit<Task, "id">) => void;
+  onCreate: (task: Omit<Task, "id">) => Promise<boolean>;
   projects: Project[];
   users: User[];
+  isCreating: boolean
 };
 
-function TaskForm({ onCreate, projects, users }: TaskFormProps) {
+function TaskForm({ onCreate, projects, users, isCreating  }: TaskFormProps) {
   const [priority, setPriority] = useState<Priority>("medium");
   const [status, setStatus] = useState<Status>("todo");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [projectId, setProjectId] = useState("");
   const [userId, setUserId] = useState("");
+ 
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+if(!title.trim()){
+  return
+
+}
 
     const newTask: Omit<Task, "id"> = {
       title: title,
@@ -33,29 +40,34 @@ function TaskForm({ onCreate, projects, users }: TaskFormProps) {
       projectId: projectId,
       assigneeId: userId,
     };
+  const success = await onCreate(newTask);
 
-    onCreate(newTask);
-
+if(!success){
+  return
+}
     setTitle("");
     setDescription("");
     setProjectId("");
     setUserId("");
+     setPriority("medium");
+    setStatus("todo");
   };
+  console.log(isCreating)
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <input
+      <input   maxLength={100}  required
         className={styles.input}
         placeholder="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <input
+      <input   maxLength={100}
         className={styles.input}
         placeholder="description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <select
+      <select required
         className={styles.select}
         value={priority}
         onChange={(e) => setPriority(e.target.value as Priority)}
@@ -64,7 +76,7 @@ function TaskForm({ onCreate, projects, users }: TaskFormProps) {
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-      <select
+      <select 
         className={styles.select}
         value={status}
         onChange={(e) => setStatus(e.target.value as Status)}
@@ -73,7 +85,7 @@ function TaskForm({ onCreate, projects, users }: TaskFormProps) {
         <option value="in-progress">in-progress</option>
         <option value="todo">todo</option>
       </select>
-      <select
+      <select required
         className={styles.select}
         value={projectId}
         onChange={(e) => setProjectId(e.target.value)}
@@ -85,7 +97,7 @@ function TaskForm({ onCreate, projects, users }: TaskFormProps) {
           </option>
         ))}
       </select>
-      <select
+      <select required
         className={styles.select}
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
@@ -97,9 +109,9 @@ function TaskForm({ onCreate, projects, users }: TaskFormProps) {
           </option>
         ))}
       </select>
-
-      <button className={styles.submit} type="submit">
-        Create task
+   
+      <button disabled={isCreating}  className={styles.submit} type="submit">
+        {isCreating ? ('Creating...') : ('Create task') }
       </button>
     </form>
   );

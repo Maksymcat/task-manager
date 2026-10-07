@@ -18,7 +18,7 @@ type TaskItemProps = {
   users: User[];
   projects: Project[];
   onDelete: (id: string) => void;
-  onUpdate: (id: string, changes: TaskUpdate) => void;
+  onUpdate: (id: string, changes: TaskUpdate) => Promise<boolean>;
 };
 
 function TaskItem({
@@ -29,7 +29,7 @@ function TaskItem({
   onUpdate,
 }: TaskItemProps) {
   const [isEditing, setIsEditing] = useState(false);
-
+const [isSaving, setIsSaving] = useState(false);
   const [draft, setDraft] = useState<EditableTask>({
     title: task.title,
     description: task.description,
@@ -51,7 +51,27 @@ function TaskItem({
 
     setIsEditing(true);
   };
+const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
 
+  if (!draft.title.trim()) {
+    return;
+  }
+
+  setIsSaving(true);
+
+  const success = await onUpdate(task.id, draft);
+
+  setIsSaving(false);
+
+  if (!success) {
+    return;
+  }
+
+  setIsEditing(false);
+};
   const project = projects.find((project) => project.id === task.projectId);
 
   const user = users.find((user) => user.id === task.assigneeId);
@@ -59,11 +79,13 @@ function TaskItem({
   return (
     <li className={styles.task}>
       {isEditing ? (
-        <div className={styles.editForm}>
-          <div className={styles.field}>
+        <form onSubmit={handleSubmit} className={styles.editForm}>
+          <label className={styles.field}>
             <span className={styles.label}>Title</span>
 
             <input
+            required
+             maxLength={100}
               className={styles.editInput}
               value={draft.title}
               onChange={(e) =>
@@ -73,11 +95,11 @@ function TaskItem({
                 }))
               }
             />
-          </div>
-          <div className={styles.field}>
+          </label>
+          <label className={styles.field}>
             <span className={styles.label}>Description</span>
 
-            <textarea
+            <textarea maxLength={500}
               className={styles.editTextarea}
               value={draft.description}
               onChange={(e) =>
@@ -87,8 +109,8 @@ function TaskItem({
                 }))
               }
             />
-          </div>
-          <div className={styles.field}>
+          </label>
+          <label className={styles.field}>
             <span className={styles.label}>Status</span>
 
             <select
@@ -105,8 +127,8 @@ function TaskItem({
               <option value="in-progress">In progress</option>
               <option value="done">Done</option>
             </select>
-          </div>
-          <div className={styles.field}>
+          </label>
+          <label className={styles.field}>
             <span className={styles.label}>Priority</span>
 
             <select
@@ -123,9 +145,9 @@ function TaskItem({
               <option value="medium">Medium</option>
               <option value="high">High</option>
             </select>
-          </div>
-          <div className={styles.field}>
-            <span>project</span>
+          </label>
+          <label className={styles.field}>
+            <span className={styles.label}>project</span>
             <select
               className={styles.select}
               value={draft.projectId}
@@ -137,12 +159,12 @@ function TaskItem({
               }
             >
               {projects.map((project) => (
-                <option value={project.id}>{project.name}</option>
+                <option key={project.id} value={project.id}>{project.name}</option>
               ))}
             </select>
-          </div>{" "}
-          <div className={styles.field}>
-            <span>User</span>
+          </label>{" "}
+          <label className={styles.field}>
+            <span className={styles.label}>User</span>
             <select
               className={styles.select}
               value={draft.assigneeId}
@@ -159,19 +181,16 @@ function TaskItem({
                 </option>
               ))}
             </select>
-          </div>
+          </label>
           <div className={styles.actions}>
-            <button
+            <button type="submit"  disabled={isSaving}
               className={styles.saveButton}
-              onClick={() => {
-                onUpdate(task.id, draft);
-                setIsEditing(false);
-              }}
+             
             >
-              Save
+          {isSaving ? "Saving..." : "Save"}
             </button>
 
-            <button
+            <button type="button"
               className={styles.cancelButton}
               onClick={() => {
                 setIsEditing(false);
@@ -180,7 +199,7 @@ function TaskItem({
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       ) : (
         <>
           <h2 className={styles.title}>

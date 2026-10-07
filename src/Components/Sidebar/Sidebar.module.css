@@ -10,8 +10,8 @@
   padding-top: 28px;
   gap: 14px;
 
-  background: #191a21;
-  border-right: 1px solid #292b34;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
 }
 
 .sidebar a {
@@ -24,7 +24,7 @@
 
   padding: 8px;
 
-  color: #8b8f9e;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 12px;
 
@@ -36,11 +36,11 @@
 }
 
 .sidebar a:hover {
-  color: #ffffff;
-  background: #292b35;
+  color: var(--text);
+  background: var(--accent);
 }
 
 .sidebar a.active {
-  color: #ffffff;
-  background: #5958f6;
+  color: var(--text);
+   background: var(--accent);
 }

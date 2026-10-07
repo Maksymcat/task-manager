@@ -15,7 +15,7 @@
 .title {
   margin: 0;
 
-  color: #f5f5f7;
+  color: var(--text);
   font-size: 28px;
   font-weight: 700;
 }
@@ -23,8 +23,8 @@
 .count {
   padding: 6px 10px;
 
-  color: #a5a8b3;
-  background: #1b1d24;
+  color: var(--text-secondary);
+  background: var(--surface);
 
   border: 1px solid #292c35;
   border-radius: 7px;
@@ -40,8 +40,8 @@
   padding: 14px;
 
   color: #ff8585;
-  background: #2b1d22;
+  background: var(--surface);
 
-  border: 1px solid #4a2932;
+  border: 1px solid var(--border);
   border-radius: 9px;
 }

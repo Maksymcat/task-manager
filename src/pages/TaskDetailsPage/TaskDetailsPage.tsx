@@ -79,7 +79,7 @@ function TaskDetailsPage() {
 
   return (
     <>
-      <button><Link to={`/tasks/`}>Back to tasks</Link></button>
+     <Link className={styles.back} to={`/tasks/`}>Back to tasks</Link>
       <div className={styles.card}>
         <h1 className={styles.title}>{taskById.title}</h1>
         <div className={styles.field}><span className={styles.label}>Description</span><p className={styles.value}>{taskById.description}</p></div>

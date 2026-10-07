@@ -4,7 +4,7 @@ import { type FormEvent } from "react";
 import styles from "./ProjectForm.module.css"
 
 type ProjectFormProps = {
-    onCreate: (project: Omit<Project, "id">) => void;
+    onCreate: (project: Omit<Project, "id">) => Promise<boolean>;
 };
 
 
@@ -13,9 +13,9 @@ function ProjectForm({ onCreate }: ProjectFormProps) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (name === "") {
+        if (!name.trim()) {
             return console.log("cant create without name ")
         }
         const newProject: Omit<Project, "id"> = {
@@ -23,15 +23,18 @@ function ProjectForm({ onCreate }: ProjectFormProps) {
             description: description,
             createdAt: Date.now()
         };
-        onCreate(newProject)
+        const success = await onCreate(newProject)
+     if(!success){
+        return
+     }
         setName("")
         setDescription("")
     }
     return (
 
         <form className={styles.form} onSubmit={handleSubmit}>
-            <input className={styles.input} value={name} onChange={(e) => setName(e.target.value)} placeholder="name" type="text"></input>
-            <input className={styles.input} value={description} placeholder="desc" onChange={(e) => setDescription(e.target.value)} type="text"></input>
+            <input   maxLength={100} required className={styles.input} value={name} onChange={(e) => setName(e.target.value)} placeholder="name" type="text"></input>
+            <input   className={styles.input} value={description} placeholder="desc" onChange={(e) => setDescription(e.target.value)} type="text"></input>
             <button className={styles.button} type="submit">Create project</button>
         </form>
 

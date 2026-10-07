@@ -9,13 +9,14 @@
 
   font-size: 28px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text);
+ 
 }
 
 .loading,
 .error {
   padding: 24px;
-  color: #9da1ad;
+  color: var(--text-secondary);
 }
 
 .error {
@@ -31,8 +32,8 @@
   margin-bottom: 22px;
   padding: 14px 16px;
 
-  background: #181a20;
-  border: 1px solid #292c35;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 12px;
 }
 
@@ -43,58 +44,58 @@
 }
 
 .filterLabel {
-  color: #9ca0ad;
+  color: var(--text-secondary);
   font-size: 13px;
 }
 
 .filterButton {
   padding: 7px 12px;
 
-  background: #111319;
-  color: #aeb2be;
+  background: var(--input-bg);
+  color: var(--text);
 
-  border: 1px solid #30333d;
+  border: 1px solid var(--input-border);
   border-radius: 7px;
 
   cursor: pointer;
 }
 
 .filterButton:hover {
-  background: #252833;
-  color: white;
+  background: var(--surface-hover);
+  color: var(--text);
 }
 
 .active {
-  background: #5b5cf6;
+  background: var(--accent);
   color: white;
-  border-color: #5b5cf6;
+  border-color: var(--accent);
 }
 
 .search {
   height: 34px;
   padding: 0 10px;
 
-  background: #111319;
-  color: white;
+  background: var(--input-bg);
+  color: var(--text);
 
-  border: 1px solid #30333d;
+  border: 1px solid  var(--input-border);
   border-radius: 7px;
 
   outline: none;
 }
 
 .search:focus {
-  border-color: #5b5cf6;
+  border-color: var(--accent);
 }
 
 .sortSelect {
   height: 34px;
   padding: 0 10px;
 
-  background: #111319;
-  color: #d5d7dd;
+  background: var(--input-bg);
+  color: var(--text);
 
-  border: 1px solid #30333d;
+  border: 1px solid var(--input-border);
   border-radius: 7px;
 
   outline: none;
@@ -102,5 +103,5 @@
 }
 
 .sortSelect:focus {
-  border-color: #5b5cf6;
+  border-color: var(--accent);
 }
