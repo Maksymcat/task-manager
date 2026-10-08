@@ -1,8 +1,10 @@
 .sidebar {
+  position: sticky;
+top: 0;
   width: 94px;
   min-width: 94px;
-  min-height: 100vh;
-
+  min-height: 0;
+align-self: flex-start;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -2,15 +2,15 @@
 import { getTasks, updateTaskStatus } from "../../services/taskApi";
 import { type Priority, type Task, type TaskUpdate } from "../../types/task";
 import { createTask, deleteTask } from "../../services/taskApi";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import TaskForm from "../../Components/TaskForm/TaskForm";
 import styles from "../TasksPage/TasksPage.module.css";
 import type { Status } from "../../types/task";
 import KanbanBoard from "../../Components/KanbanBoard/KanbanBoard";
 import { getProjects } from "../../services/projectApi";
-import { type Project } from "../../types/projects";
-import { type User } from "../../types/User";
+
 import { getUsers } from "../../services/usersApi";
+import { useQuery,  useMutation } from "@tanstack/react-query";
 
 type SortValue = "" | "New" | "Old" | "Alphabet";
 
@@ -19,69 +19,68 @@ function TasksPage() {
   const [statusFilter, setStatusFilter] = useState<Status | "">("");
   const [priorityFilter, setPriorityFilter] = useState<Priority | "">("");
   const [searchValue, setSearchValue] = useState<string>("");
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
- const [loadError, setLoadError] = useState<string | null>(null);
+
 const [mutationError, setMutationError] = useState<string | null>(null);
-  const [users, setUsers] = useState<User[]>([])
-  const [isCreating, setIsCreating] = useState(false);
+
+
+  const createTaskMutation = useMutation({
+  mutationFn: createTask,
+});
+  const {
+  data: tasks = [],
+  isPending: tasksLoading,
+  isError: tasksError,
+  refetch: refetchTasks,
+} = useQuery({
+  queryKey: ["tasks"],
+  queryFn: getTasks,
+});
+  const {
+  data: users = [],
+  isPending: usersLoading,
+  isError: usersError,
+} = useQuery({
+  queryKey: ["users"],
+  queryFn: getUsers,
+});
+  const {
+  data: projects = [],
+  isPending: projectsLoading,
+  isError: projectsError,
+} = useQuery({
+  queryKey: ["projects"],
+  queryFn: getProjects,
+});
 
   const handleCreateTask = async (newTask: Omit<Task, "id">): Promise<boolean> => {
-    setIsCreating(true)
+  
     setMutationError(null)
     try {
  
-      const createdTask = await createTask(newTask);
+    await createTaskMutation.mutateAsync(newTask);
 
-      setTasks((prevTasks) => [...prevTasks, createdTask]);
+    await refetchTasks()
       return true
     } catch {
-      setMutationError("Не вдалося створити задачу");
+      setMutationError("cant update task");
 
       return false
     }finally{
-      setIsCreating(false)
+   
     }
   };
 
-  useEffect(() => {
-   
-      async function loadPage() {
-          setLoading(true)
-        setLoadError(null)
-       
-        try {
-  
-          const [tasks, projects, users] = await Promise.all([
-            getTasks(),
-            getProjects(),
-            getUsers()
-          ])
-  
-          setTasks(tasks)
-          setProjects(projects)
-          setUsers(users)
-        } catch {
-          setLoadError("error")
-        } finally {
-       setLoading(false)
-  
-        }
-  
-      }
-      loadPage()
-  
-    }, [])
+ 
 
   const handleDelete = async (id: string) => {
       setMutationError(null);
     try {
       await deleteTask(id);
 
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+
+    await refetchTasks();
     } catch {
-      setMutationError("Не вдалося видалити задачу");
+      setMutationError("cant update task");
     }
   };
  
@@ -89,14 +88,12 @@ const [mutationError, setMutationError] = useState<string | null>(null);
   const handleUpdate = async (id: string, changes: TaskUpdate): Promise<boolean> => {
       setMutationError(null);
     try {
-      const updatedTask = await updateTaskStatus(id, changes);
+      await updateTaskStatus(id, changes);
 
-      setTasks((prevTasks) =>
-        prevTasks.map((task) => (task.id === id ? updatedTask : task)),
-      );
+    await refetchTasks();
       return true
     } catch {
-      setMutationError("Не вдалося оновити задачу");
+      setMutationError("cant update task");
       return false
     }
   };
@@ -124,11 +121,11 @@ const [mutationError, setMutationError] = useState<string | null>(null);
     }
     return 0;
   });
-  if(loading){
+  if(tasksLoading  || projectsLoading || usersLoading){
     return <div>Loading...</div>
   }
-  if(loadError){
-    return <div>{loadError}...</div>
+  if(tasksError  || projectsError || usersError){
+    return <div>failed to load pagediv</div>
   }
   return (
     <>
@@ -232,7 +229,7 @@ const [mutationError, setMutationError] = useState<string | null>(null);
       {mutationError}
     </div>
   )}
-        <TaskForm isCreating={isCreating} users={users} projects={projects} onCreate={handleCreateTask} />
+        <TaskForm  isCreating={createTaskMutation.isPending} users={users} projects={projects} onCreate={handleCreateTask} />
         <KanbanBoard
           projects={projects}
           users={users}
