@@ -1,42 +1,124 @@
 {
   "tasks": [
     {
-      "title": "asdasd",
-      "description": "asdasd",
-      "status": "in-progress",
+      "title": "Review the current website",
+      "description": "Identify usability issues and opportunities to improve the existing website.",
+      "status": "done",
       "priority": "medium",
-      "createdAt": 1790967233696,
-      "projectId": "VvxOKZaRIP4",
+      "createdAt": 1791444979727,
+      "projectId": "8vhGzmwniFE",
       "assigneeId": "asdasd",
-      "id": "6sogF1EPzyg"
+      "id": "wrlmXSITDHA"
     },
     {
-      "title": "123123asdasd5dsa",
-      "description": "123312123",
+      "title": "Design the new homepage",
+      "description": "Create a homepage layout with clear messaging and prominent calls to action.",
+      "status": "in-progress",
+      "priority": "high",
+      "createdAt": 1791445042791,
+      "projectId": "8vhGzmwniFE",
+      "assigneeId": "asdasd",
+      "id": "CtDLS4M4_ik"
+    },
+    {
+      "title": "Improve mobile navigation",
+      "description": "Make the navigation easy to use on phones and tablets.",
       "status": "todo",
       "priority": "high",
-      "createdAt": 1791048702530,
-      "projectId": "VvxOKZaRIP4",
+      "createdAt": 1791445060282,
+      "projectId": "8vhGzmwniFE",
       "assigneeId": "asdasd",
-      "id": "8jVoqauMZ5w"
+      "id": "LUoYZQpNIsQ"
     },
     {
-      "title": "asdasdasd",
-      "description": "asdasdasd",
+      "title": "Define the portal structure",
+      "description": "Outline the main pages and customer navigation flow.",
+      "status": "done",
+      "priority": "medium",
+      "createdAt": 1791445145844,
+      "projectId": "Klhxq-k0AdY",
+      "assigneeId": "asdasd",
+      "id": "zjKyZ-eQUm0"
+    },
+    {
+      "title": "Build the customer dashboard",
+      "description": "Display recent requests, status updates, and quick actions in one place.",
+      "status": "in-progress",
+      "priority": "high",
+      "createdAt": 1791445166179,
+      "projectId": "Klhxq-k0AdY",
+      "assigneeId": "asdasd",
+      "id": "s_HiruGpFmg"
+    },
+    {
+      "title": "Add request search",
+      "description": "Let customers find requests by title and filter them by status.",
+      "status": "todo",
+      "priority": "low",
+      "createdAt": 1791445195337,
+      "projectId": "Klhxq-k0AdY",
+      "assigneeId": "asdasd",
+      "id": "9lFC5Ztrzdw"
+    },
+    {
+      "title": "Prepare the launch brief",
+      "description": "Define the target audience, key messages, and campaign goals.",
+      "status": "done",
+      "priority": "high",
+      "createdAt": 1791445211077,
+      "projectId": "k_F-0Mafeh8",
+      "assigneeId": "asdasd",
+      "id": "m63HavaDiuA"
+    },
+    {
+      "title": "Create campaign visuals",
+      "description": "Design banners and social media graphics for the launch campaign.",
+      "status": "in-progress",
+      "priority": "medium",
+      "createdAt": 1791445234569,
+      "projectId": "k_F-0Mafeh8",
+      "assigneeId": "asdasd",
+      "id": "mCvfPESrnBo"
+    },
+    {
+      "title": "Draft the announcement email",
+      "description": "Write an email introducing the product and highlighting its main benefits.",
       "status": "todo",
       "priority": "medium",
-      "createdAt": 1791048770166,
-      "projectId": "VvxOKZaRIP4",
+      "createdAt": 1791445247914,
+      "projectId": "k_F-0Mafeh8",
       "assigneeId": "asdasd",
-      "id": "x77fvCHLYp4"
+      "id": "6_Xfm4KihsA"
+    },
+    {
+      "title": "asdads",
+      "description": "asdsda",
+      "status": "in-progress",
+      "priority": "medium",
+      "createdAt": 1791447611519,
+      "projectId": "8vhGzmwniFE",
+      "assigneeId": "asdasd",
+      "id": "5ZbMQoOFw3I"
     }
   ],
   "projects": [
     {
-      "name": "asdasdasddadas",
-      "description": "asdasdadsadsadads",
-      "createdAt": 1790967227725,
-      "id": "VvxOKZaRIP4"
+      "name": " Website Redesign",
+      "description": "Refresh the company website with a modern design and improved navigation.",
+      "createdAt": 1791444943855,
+      "id": "8vhGzmwniFE"
+    },
+    {
+      "name": "Customer Portal",
+      "description": "Build a portal where customers can manage requests and track their progress.",
+      "createdAt": 1791445111905,
+      "id": "Klhxq-k0AdY"
+    },
+    {
+      "name": "Product Launch",
+      "description": "Prepare marketing materials and coordinate the upcoming product launch.",
+      "createdAt": 1791445127338,
+      "id": "k_F-0Mafeh8"
     }
   ],
   "users": [

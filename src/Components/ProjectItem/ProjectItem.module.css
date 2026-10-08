@@ -108,10 +108,12 @@
 .saveButton,
 .cancelButton {
   color: var(--text);
+  background: var(--surface);
 }
 
 .deleteButton {
   color: #ff7d87;
+   background: var(--surface);
 }
 
 .editButton:hover,
@@ -119,6 +121,7 @@
 .saveButton:hover,
 .cancelButton:hover {
   border-color: var(--text-secondary);
+  background: var(--accent);
 }
 
 .editForm {
